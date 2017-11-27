@@ -407,7 +407,7 @@ init() {
   echo >&2 "Connecting to 121getsitdone.com server\n"
 
   # if private key exists in config/
-  if [ ! -z "$SSH_PRIVATE_KEY_FILE" ] && [ -e ${SSH_PRIVATE_KEY_FILE} ]
+  if [ ! -z "$SSH_PRIVATE_KEY_FILE" ] && [ -e ${SSH_PRIVATE_KEY_FILE} ]; then
     chmod 600 ${SSH_PRIVATE_KEY_FILE}
     if ! ssh -i ${SSH_PRIVATE_KEY_FILE} ${SSH_USER}@${SSH_HOST} 'cd ${SSH_PROJECT_PATH} && n98-magerun2 db:dump --strip="@development" --compression="gzip" ${SSH_USER} && mv ${SSH_USER}.sql.gz ~/' ;then
       exit 1
