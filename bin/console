@@ -409,13 +409,13 @@ init() {
   # if private key exists in config/
   if [ ! -z "$SSH_PRIVATE_KEY_FILE" ] && [ -e ${SSH_PRIVATE_KEY_FILE} ]
     chmod 600 ${SSH_PRIVATE_KEY_FILE}
-    if ! ssh -i ${SSH_PRIVATE_KEY_FILE} ${SSH_USER}@${SSH_HOST} 'cd public_html/current/ && n98-magerun2 db:dump --strip="@development" --compression="gzip" ${SSH_USER} && mv ${SSH_USER}.sql.gz ~/' ;then
+    if ! ssh -i ${SSH_PRIVATE_KEY_FILE} ${SSH_USER}@${SSH_HOST} 'cd ${SSH_PROJECT_PATH} && n98-magerun2 db:dump --strip="@development" --compression="gzip" ${SSH_USER} && mv ${SSH_USER}.sql.gz ~/' ;then
       exit 1
     fi
     scp -i ${SSH_PRIVATE_KEY_FILE} ${SSH_USER}@${SSH_HOST}:~/${SSH_USER}.sql.gz config/mysql/
     ssh -i ${SSH_PRIVATE_KEY_FILE} ${SSH_USER}@${SSH_HOST} 'rm ~/${SSH_USER}.sql.gz'
   else
-    if ! ssh ${SSH_USER}@${SSH_HOST} 'cd public_html/current/ && n98-magerun2 db:dump --strip="@development" --compression="gzip" ${SSH_USER} && mv ${SSH_USER}.sql.gz ~/' ;then
+    if ! ssh ${SSH_USER}@${SSH_HOST} 'cd ${SSH_PROJECT_PATH} && n98-magerun2 db:dump --strip="@development" --compression="gzip" ${SSH_USER} && mv ${SSH_USER}.sql.gz ~/' ;then
       exit 1
     fi
     scp ${SSH_USER}@${SSH_HOST}:~/${SSH_USER}.sql.gz config/mysql/
