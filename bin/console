@@ -424,14 +424,6 @@ init() {
 
   gzip -d config/mysql/${SSH_USER}.sql.gz config/mysql
 
-  echo >&2 "Initializing fork based repo\n\n"
-  git init
-  git remote add origin ${GITHUB_FORK}
-  git remote add 121ecommerce ${GITHUB_REPO}
-  git pull 121ecommerce master
-
-  composer install
-
   importMagento $1 $2
 
 }

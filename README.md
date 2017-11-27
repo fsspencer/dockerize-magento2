@@ -121,9 +121,7 @@ ADMIN_PASSWORD=121ecommerce
 SSH_HOST=dev121.magemojo.com
 SSH_USER=weld
 SSH_PRIVATE_KEY_FILE=config/private_key.txt
-
-GITHUB_REPO=https://github.com/121eCommerceLLC/weld.git
-GITHUB_FORK=https://github.com/fsspencer/weld.git
+SSH_PROJECT_PATH=/home/user/public_html/current
 
 DEFAULT_LANGUAGE=en_US
 DEFAULT_CURRENCY=USD
@@ -132,7 +130,7 @@ DEFAULT_TIMEZONE=America/New_York
 BACKEND_FRONTNAME=backend
 ```
 
-Once you fill up tne `env.php`with your project parameters, execute the following command:
+Once you filled up tne `env.php` with your project parameters, execute the following command:
 
 ```bash
 bin/console init <hostname> [crypt]
